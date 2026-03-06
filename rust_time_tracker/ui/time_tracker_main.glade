@@ -32,6 +32,20 @@
     <property name="can-focus">False</property>
     <property name="stock">gtk-file</property>
   </object>
+  <object class="GtkListStore" id="name_list_store">
+    <columns>
+      <!-- column-name names -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Bob</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Sally</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkListStore" id="project_list_store">
     <columns>
       <!-- column-name Project -->
@@ -79,6 +93,9 @@
             <property name="reorderable">True</property>
             <property name="enable-grid-lines">horizontal</property>
             <property name="tooltip-column">0</property>
+            <child internal-child="selection">
+              <object class="GtkTreeSelection"/>
+            </child>
             <child>
               <object class="GtkTreeViewColumn" id="tree_view_column">
                 <property name="sizing">autosize</property>
@@ -562,10 +579,361 @@
       </object>
     </child>
   </object>
+  <object class="GtkListStore" id="time_list_store">
+    <columns>
+      <!-- column-name Time -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">12:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">1:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">2:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">3:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">4:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">5:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">6:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">7:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">8:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">9:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">10:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">11:00 AM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">12:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">1:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">2:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">3:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">4:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">5:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">6:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">7:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">8:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">9:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">10:00 PM</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">11:00 PM</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkWindow" id="timesheet_settings_window">
     <property name="can-focus">False</property>
     <child>
-      <placeholder/>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <!-- n-columns=4 n-rows=2 -->
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">5</property>
+            <property name="margin-right">5</property>
+            <property name="margin-top">5</property>
+            <property name="row-spacing">5</property>
+            <property name="column-spacing">5</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Period: </property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">days</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">at</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="value">7</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="hexpand">False</property>
+                <property name="label" translatable="yes">Begins on: </property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkCalendar">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="year">2026</property>
+                <property name="month">2</property>
+                <property name="day">6</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="valign">center</property>
+                <property name="model">time_list_store</property>
+                <child>
+                  <object class="GtkCellRendererText" id="time_cell_renderer"/>
+                  <attributes>
+                    <attribute name="visible">0</attribute>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">3</property>
+                <property name="top-attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="auto_rotate_checkbox">
+            <property name="label" translatable="yes">Automatically Rotate?</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">When this box is checked, a new timesheet will be started at the end of the specified period.</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="active">True</property>
+            <property name="draw-indicator">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">5</property>
+            <property name="margin-right">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Save</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListStore" id="timesheet_list_store">
+    <columns>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+      <!-- column-name gchararray2 -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">010978-0305</col>
+        <col id="1" translatable="yes">5.5</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">HOLIDAY</col>
+        <col id="1" translatable="yes"/>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow" id="timesheet_window">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkTreeView">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="model">timesheet_list_store</property>
+            <property name="enable-grid-lines">both</property>
+            <child internal-child="selection">
+              <object class="GtkTreeSelection"/>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn" id="timesheet_tree_view">
+                <property name="title" translatable="yes">Project</property>
+                <child>
+                  <object class="GtkCellRendererText" id="timesheet_renderer"/>
+                  <attributes>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn">
+                <property name="title" translatable="yes">Monday</property>
+                <child>
+                  <object class="GtkCellRendererText"/>
+                  <attributes>
+                    <attribute name="text">1</attribute>
+                  </attributes>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn">
+                <property name="title" translatable="yes">Tuesday</property>
+                <child>
+                  <object class="GtkCellRendererText"/>
+                  <attributes>
+                    <attribute name="text">1</attribute>
+                  </attributes>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn">
+                <property name="title" translatable="yes">Wednesday</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn">
+                <property name="title" translatable="yes">Thursday</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn">
+                <property name="title" translatable="yes">Friday</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
     </child>
   </object>
 </interface>
